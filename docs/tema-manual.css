@@ -1,0 +1,115 @@
+/* Manual: página impressa de manual de videogame. Uma cor de papel, um desenho técnico, tipo enorme.
+   Nada de cartão, sombra ou gradiente. O único gesto grande é o desenho com as linhas. */
+:root[data-tema="manual"]{
+  color-scheme:dark;
+  --cobalto:#1a3bd8; --cobalto-esc:#122aa3; --papel:#f4f5ff; --papel-fraco:#c9d1ff; --gema:#ffe14d; --tinta:#0b1a6e;
+  --fundo:#1a3bd8; --texto:#f4f5ff; --apagado:#c9d1ff; --borda:#f4f5ff; --azul:#ffe14d; --azul-claro:#ffe14d;
+  --prata:transparent; --prata-esc:#5f78ea; --laranja:#ffe14d; --verde:#ffe14d; --ambar:#ffe14d; --vermelho:#ffe14d;
+  --fonte:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  --titulo:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;
+}
+[data-tema="manual"] body{font-size:16px;line-height:1.5;background:var(--cobalto);background-image:none}
+[data-tema="manual"] .pagina{max-width:1320px;margin:0 auto;padding-block:20px 32px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));background:none;border:0;box-shadow:none;border-radius:0;display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:0 24px}
+[data-tema="manual"] .barra-janela,[data-tema="manual"] .letreiro,[data-tema="manual"] .selos,[data-tema="manual"] .slogan,[data-tema="manual"] .abas .icone{display:none}
+
+[data-tema="manual"] .topo{padding:0;background:none;color:var(--papel)}
+[data-tema="manual"] .logo{font:800 24px/1 var(--titulo);letter-spacing:0;text-shadow:none}
+[data-tema="manual"] .logo-b{color:inherit;font-style:normal;margin-left:.2em}
+[data-tema="manual"] .abas{display:flex;flex-wrap:wrap;gap:4px 22px;padding:0;background:none;border:0}
+[data-tema="manual"] .abas a{padding:2px 0;font:500 16px var(--fonte);color:var(--papel);background:none;border:0;border-radius:0;box-shadow:none;transform:none;text-decoration:none;border-bottom:2px solid transparent}
+[data-tema="manual"] .abas a:hover{border-bottom-color:var(--papel-fraco)}
+[data-tema="manual"] .abas a[aria-current="page"]{color:var(--gema);background:none;border-bottom-color:var(--gema)}
+[data-tema="manual"] .abas .rotulo{position:static;width:auto;height:auto;clip-path:none}
+
+[data-tema="manual"] .corpo{grid-column:1/-1;display:flex;flex-direction:column;padding:0;margin-top:clamp(20px,4vw,44px)}
+[data-tema="manual"] .lateral{order:2;display:block;margin-top:48px}
+[data-tema="manual"] .conteudo{order:1}
+[data-tema="manual"] .lateral .caixa{display:none}
+[data-tema="manual"] .lateral .caixa:last-child{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:none;border:0;border-radius:0;clip-path:none;padding:0;box-shadow:none}
+[data-tema="manual"] .lateral .caixa:last-child h2{display:none}
+[data-tema="manual"] .lateral .caixa:last-child>*{margin:0;width:auto}
+[data-tema="manual"] .lateral label{font-size:14px;color:var(--papel-fraco)}
+[data-tema="manual"] .lateral select{width:auto;min-width:190px}
+
+/* O nome do item é o título da página */
+[data-tema="manual"] .nome{margin:0;padding:0;border:0;font:900 clamp(62px,14.2vw,196px)/.86 var(--titulo);letter-spacing:-.012em;color:var(--papel);text-wrap:balance}
+[data-tema="manual"] .nome.pequeno{font-size:clamp(56px,10vw,132px)}
+[data-tema="manual"] .frase{max-width:60ch;margin:16px 0 0;font-size:clamp(16px,1.6vw,20px);color:var(--papel)}
+[data-tema="manual"] .frase.alerta{color:var(--gema);margin-top:4px}
+[data-tema="manual"] .outros{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px}
+[data-tema="manual"] .outros button{padding:0;font:500 16px var(--fonte);color:var(--papel-fraco);background:none;border:0;border-bottom:2px solid transparent;cursor:pointer}
+[data-tema="manual"] .outros button[aria-pressed="true"]{color:var(--gema);border-bottom-color:var(--gema)}
+
+/* O desenho */
+[data-tema="manual"] .palco{display:block;width:100%;height:auto;max-height:min(66vh,640px);margin-top:clamp(10px,1.6vw,20px);overflow:visible}
+[data-tema="manual"] .desenho *{fill:none;stroke:var(--papel);stroke-width:2.2;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+[data-tema="manual"] .desenho .casco{stroke-width:3.5;fill:var(--cobalto-esc)}
+[data-tema="manual"] .fio{fill:none;stroke:var(--gema);stroke-width:1.6;stroke-dasharray:1400;stroke-dashoffset:0;animation:traca .8s calc(var(--i)*.09s) ease-out backwards}
+@keyframes traca{from{stroke-dashoffset:1400}}
+[data-tema="manual"] .ponto circle{fill:var(--gema)}
+[data-tema="manual"] .ponto text{font:800 19px var(--titulo);fill:var(--tinta)}
+[data-tema="manual"] .rotulos .grande{font:800 44px var(--titulo);fill:var(--papel)}
+[data-tema="manual"] .rotulos .linha{font:500 18px var(--fonte);fill:var(--papel)}
+[data-tema="manual"] .rotulos .linha.fraca{font-weight:400;fill:var(--papel-fraco)}
+[data-tema="manual"] .rotulos a:hover .grande,[data-tema="manual"] .rotulos a:focus-visible .grande{fill:var(--gema)}
+[data-tema="manual"] .rotulos a:focus-visible{outline:2px solid var(--gema)}
+
+/* Legenda numerada: a mesma ordem do desenho */
+[data-tema="manual"] .partes{list-style:none;counter-reset:p;margin:clamp(20px,3vw,36px) 0 0;padding:0;border-top:3px solid var(--papel)}
+[data-tema="manual"] .partes li{counter-increment:p;display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--prata-esc)}
+[data-tema="manual"] .partes li::before{content:counter(p);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;font:800 18px var(--titulo);color:var(--tinta);background:var(--gema)}
+[data-tema="manual"] .partes a,[data-tema="manual"] .partes li>div{display:grid;grid-template-columns:minmax(120px,190px) minmax(0,1fr);gap:0 16px;color:var(--papel);text-decoration:none;min-width:0}
+[data-tema="manual"] .partes a:hover b{color:var(--gema)}
+[data-tema="manual"] .partes b{font:800 28px/1.1 var(--titulo)}
+[data-tema="manual"] .partes span{overflow-wrap:anywhere}
+[data-tema="manual"] .partes small{grid-column:2;font-size:14px;color:var(--papel-fraco)}
+[data-tema="manual"] .so-celular{display:none}
+
+/* Minha lista */
+[data-tema="manual"] .linha-item{padding:22px 0;border-bottom:1px solid var(--prata-esc);background:none}
+[data-tema="manual"] .linha-item:first-of-type{margin-top:22px;border-top:3px solid var(--papel)}
+[data-tema="manual"] .linha-item h2{margin:0;font:800 clamp(36px,5.4vw,68px)/.95 var(--titulo);color:var(--papel)}
+[data-tema="manual"] .linha-item p{max-width:66ch;margin:8px 0 0}
+[data-tema="manual"] .acoes-m{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px}
+[data-tema="manual"] .acoes-m button{padding:0;font:600 15px var(--fonte);color:var(--gema);background:none;border:0;border-bottom:2px solid currentColor;cursor:pointer}
+[data-tema="manual"] .acoes-m button:hover{color:var(--papel)}
+[data-tema="manual"] .carimbo,[data-tema="manual"] .botao{display:inline-flex;align-items:center;gap:8px;min-height:48px;margin-top:22px;padding:0 22px;font:800 24px var(--titulo);color:var(--tinta);background:var(--gema);border:0;border-radius:0;box-shadow:none;text-shadow:none;text-decoration:none;cursor:pointer}
+[data-tema="manual"] .carimbo:hover,[data-tema="manual"] .botao:hover{color:var(--gema);background:var(--tinta);filter:none;transform:none}
+[data-tema="manual"] .botao.cinza{color:var(--papel);background:none;outline:2px solid var(--papel);outline-offset:-2px}
+[data-tema="manual"] .botao.perigo{color:var(--papel)}
+
+/* Anúncios e Alertas, sem caixas */
+[data-tema="manual"] .secao h1{margin:0 0 20px;padding:0;border:0;font:900 clamp(56px,10vw,132px)/.9 var(--titulo);color:var(--papel)}
+[data-tema="manual"] .secao h2{font:800 32px var(--titulo);color:var(--papel);margin:30px 0 10px}
+[data-tema="manual"] table{background:none;border:0;border-top:3px solid var(--papel);border-radius:0;border-collapse:collapse;font-size:15px;box-shadow:none}
+[data-tema="manual"] th{padding:8px 10px 8px 0;font:600 14px var(--fonte);color:var(--papel-fraco);background:none;border-bottom:1px solid var(--prata-esc)}
+[data-tema="manual"] td{padding:10px 10px 10px 0;border-top:0;border-bottom:1px solid var(--prata-esc);color:var(--papel)}
+[data-tema="manual"] tbody tr,[data-tema="manual"] tbody tr:nth-child(even),[data-tema="manual"] tbody tr:hover{background:none}
+[data-tema="manual"] td a{color:var(--papel)}
+[data-tema="manual"] td.preco{font:800 22px var(--titulo)}
+[data-tema="manual"] .tag{padding:0;font-size:13px;color:var(--gema);background:none;border:0;border-radius:0}
+[data-tema="manual"] .passos{max-width:64ch;padding-left:24px}
+[data-tema="manual"] .passos li{margin-bottom:6px}
+[data-tema="manual"] .miudo{font-size:14px;color:var(--papel-fraco)}
+[data-tema="manual"] .vazio{padding:0;text-align:left;color:var(--papel);background:none;border:0;border-radius:0}
+[data-tema="manual"] input,[data-tema="manual"] select,[data-tema="manual"] textarea{font:15px var(--fonte);color:var(--papel);background:var(--cobalto-esc);border:2px solid var(--papel);border-radius:0;padding:8px 10px}
+[data-tema="manual"] select option{background:var(--cobalto-esc)}
+[data-tema="manual"] .filtros label{font-size:14px;font-weight:500}
+[data-tema="manual"] .rodape{grid-column:1/-1;margin-top:28px;padding:0;text-align:left;font-size:14px;color:var(--papel-fraco);background:none;border:0}
+[data-tema="manual"] .rodape p{margin:0}
+[data-tema="manual"] dialog{color:var(--papel);background:var(--cobalto-esc);border:3px solid var(--papel);border-radius:0;box-shadow:none}
+[data-tema="manual"] dialog h2{padding:16px 10px 4px;font:800 34px var(--titulo);color:var(--papel);background:none;text-align:left}
+[data-tema="manual"] dialog::backdrop{background:rgb(11 26 110 / .7)}
+[data-tema="manual"] #form label{font-size:13px;font-weight:500}
+[data-tema="manual"] :focus-visible{outline:3px solid var(--gema);outline-offset:2px}
+
+@media (max-width:860px){
+  [data-tema="manual"] .pagina{grid-template-columns:minmax(0,1fr);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  [data-tema="manual"] .abas{margin-top:12px}
+  [data-tema="manual"] .fios,[data-tema="manual"] .rotulos{display:none}
+  [data-tema="manual"] .so-celular{display:block}
+  [data-tema="manual"] .partes a,[data-tema="manual"] .partes li>div{grid-template-columns:minmax(0,1fr)}
+  [data-tema="manual"] .partes small{grid-column:1}
+  [data-tema="manual"] .nome{font-size:clamp(58px,18vw,130px)}
+}
+@media (prefers-reduced-motion:reduce){[data-tema="manual"] .fio{animation:none}}

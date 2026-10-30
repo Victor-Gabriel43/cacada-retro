@@ -7,8 +7,8 @@ const ABAS = ["painel", "lista", "anuncios", "alertas"];
 const LEDS = { ok: "funcionando", falha: "com problema", sem_chave: "sem chave" };
 
 // Para criar um tema: adicione aqui e escreva as regras em temas.css
-const TEMA_PADRAO = "vitrine";
-const TEMAS = { vitrine: "Vitrine 3D", radar: "Radar gamer", nox: "Nox", vidro: "Vidro 2026", mac: "Mac clássico", anos2000: "Portal anos 2000" };
+const TEMA_PADRAO = "manual";
+const TEMAS = { manual: "Manual", vitrine: "Vitrine 3D", radar: "Radar gamer", nox: "Nox", vidro: "Vidro 2026", mac: "Mac clássico", anos2000: "Portal anos 2000" };
 
 const $ = (id) => document.getElementById(id);
 const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -160,7 +160,10 @@ function tabelaAnuncios(lista) {
   return `<div class="rolagem"><table><thead><tr><th>Preço</th><th>Anúncio</th><th>Estado</th><th>Local</th><th>Loja</th><th>Visto em</th></tr></thead><tbody>${linhas}</tbody></table></div>`;
 }
 
+const noManual = () => document.documentElement.dataset.tema === "manual";
+
 function desenharPainel() {
+  if (noManual()) return manualPainel();
   const ativos = anuncios.filter((a) => a.ativo);
   const recentes = ativos.slice(0, 5);
   const lojas = Object.values(status.lojas || {});
@@ -185,6 +188,7 @@ function desenharPainel() {
 }
 
 function desenharLista() {
+  if (noManual()) return manualLista();
   const grupos = CATEGORIAS.map((c) => [c, itens.filter((i) => i.categoria === c)]).filter(([, l]) => l.length);
   const fichas = grupos.map(([cat, lista]) => `<h2>${esc(cat)}</h2>` + lista.map((i) => {
     const n = anuncios.filter((a) => a.item_id === i.id && a.ativo).length;
@@ -265,6 +269,10 @@ function iniciarTemas() {
   seletor.value = raiz.dataset.tema;
   seletor.onchange = () => {
     raiz.dataset.tema = seletor.value;
+    vitrine?.destruir();
+    vitrine = null;
+    desenharPainel();
+    desenharLista();
     ligarVitrine();
     try { localStorage.setItem("cacada-tema", seletor.value); } catch {}
   };

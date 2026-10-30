@@ -8,7 +8,7 @@ A busca roda no GitHub e o site fica na Vercel. Tudo de graça, com o PC e o Cla
 | Parte | Onde fica | O que faz |
 |---|---|---|
 | Site | `docs/` (Vercel) | Mostra lista, anúncios e situação dos alertas |
-| Temas | `docs/temas.css`, `docs/tema-vidro.css`, `docs/tema-nox.css`, `docs/tema-radar.css`, `docs/tema-vitrine.css`, `docs/vitrine.js` | Os visuais que você troca no site |
+| Temas | `docs/temas.css`, `docs/tema-vidro.css`, `docs/tema-nox.css`, `docs/tema-radar.css`, `docs/tema-vitrine.css`, `docs/vitrine.js`, `docs/tema-manual.css`, `docs/manual.js` | Os visuais que você troca no site |
 | Lista de itens | `docs/data/itens.json` | O que você procura. É a fonte de tudo |
 | Anúncios | `docs/data/anuncios.json` | Tudo que a busca já achou |
 | Situação | `docs/data/status.json` | Se cada loja está respondendo |
@@ -28,7 +28,8 @@ No site, use a caixa **Visual** na lateral. A escolha fica salva no seu navegado
 
 | Tema | Como é |
 |---|---|
-| Vitrine 3D (padrão) | Sala de exposição com o item em 3D que gira, e os anúncios como etiquetas de preço |
+| Manual (padrão) | Página de manual de videogame: desenho em traço com linhas apontando para cada anúncio |
+| Vitrine 3D | Sala de exposição com o item em 3D que gira, e os anúncios como etiquetas de preço |
 | Radar gamer | Radar de drops, estante de cartuchos, raridade por prioridade e botões de fliperama |
 | Nox | Escuro grafite, trilho de ícones, cartões redondos, anéis e botão azul com brilho |
 | Vidro 2026 | Painéis translúcidos, cantos redondos, abas em pílula e três bolinhas. Segue o modo claro ou escuro do aparelho |
