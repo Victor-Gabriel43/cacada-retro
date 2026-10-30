@@ -1,0 +1,74 @@
+/* Vidro 2026: painéis translúcidos sobre fundo colorido, cantos bem redondos, abas em pílula */
+:root[data-tema="vidro"]{
+  --fundo:#dfe7f5; --papel:rgb(255 255 255 / .72); --texto:#16181d; --apagado:#4d525c;
+  --borda:rgb(255 255 255 / .75); --azul:#0060df; --azul-claro:#0a7aff; --prata:rgb(255 255 255 / .6); --prata-esc:rgb(20 30 50 / .14);
+  --laranja:#0060df; --verde:#14753a; --ambar:#8f5200; --vermelho:#c0261b; --vidro-sombra:0 10px 34px rgb(20 40 90 / .18);
+  --linha-par:rgb(0 96 223 / .06); --botao-claro:rgb(255 255 255 / .8);
+  --fonte:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --titulo:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --ceu:radial-gradient(60% 55% at 12% 8%,#8fc4ff 0,transparent 70%),radial-gradient(55% 50% at 92% 14%,#f5b6e4 0,transparent 70%),
+    radial-gradient(70% 60% at 70% 100%,#9fe8d8 0,transparent 70%),linear-gradient(#e9eefb,#dfe7f5);
+}
+@media (prefers-color-scheme:dark){:root[data-tema="vidro"]{
+  color-scheme:dark;
+  --fundo:#0c1020; --papel:rgb(34 38 52 / .72); --texto:#f3f4f7; --apagado:#b4b9c5;
+  --borda:rgb(255 255 255 / .16); --azul:#6db1ff; --azul-claro:#0a7aff; --prata:rgb(52 57 74 / .62); --prata-esc:rgb(255 255 255 / .14);
+  --laranja:#6db1ff; --verde:#5fd68b; --ambar:#ffc266; --vermelho:#ff8078; --vidro-sombra:0 10px 34px rgb(0 0 0 / .45);
+  --linha-par:rgb(255 255 255 / .04); --botao-claro:rgb(70 76 96 / .75);
+  --ceu:radial-gradient(60% 55% at 12% 8%,#1d4fa8 0,transparent 70%),radial-gradient(55% 50% at 92% 14%,#6a2a78 0,transparent 70%),
+    radial-gradient(70% 60% at 70% 100%,#0f6b62 0,transparent 70%),linear-gradient(#0c1020,#10152a);
+}}
+[data-tema="vidro"] body{font-size:14px;background:var(--ceu) fixed;background-size:auto}
+[data-tema="vidro"] .pagina{background:var(--papel);border:1px solid var(--borda);border-radius:26px;overflow:hidden;margin-block:24px;
+  box-shadow:var(--vidro-sombra);backdrop-filter:blur(28px) saturate(170%);-webkit-backdrop-filter:blur(28px) saturate(170%)}
+[data-tema="vidro"] .barra-janela{display:flex;align-items:center;gap:8px;position:relative;height:40px;padding:0 16px}
+[data-tema="vidro"] .bolinha{width:12px;height:12px;border-radius:50%}
+[data-tema="vidro"] .vermelha{background:#ff5f57}
+[data-tema="vidro"] .amarela{background:#febc2e}
+[data-tema="vidro"] .verde{background:#28c840}
+[data-tema="vidro"] .barra-titulo{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--apagado);pointer-events:none}
+[data-tema="vidro"] .topo{color:var(--texto);background:none;padding:6px 24px 10px;text-align:center}
+[data-tema="vidro"] .logo{font-weight:700;font-size:clamp(32px,6vw,48px);letter-spacing:-.035em;text-shadow:none}
+[data-tema="vidro"] .logo-b{color:var(--azul);font-style:normal}
+[data-tema="vidro"] .slogan{color:var(--apagado);font-size:14px}
+[data-tema="vidro"] .abas{justify-content:center;gap:2px;width:fit-content;max-width:calc(100% - 32px);margin:6px auto 12px;padding:4px;
+  background:var(--prata);border:1px solid var(--borda);border-radius:999px}
+[data-tema="vidro"] .abas a{color:var(--texto);font-weight:500;padding:6px 16px;border:0;border-radius:999px;background:none}
+[data-tema="vidro"] .abas a[aria-current="page"]{color:#fff;background:#0060df}
+[data-tema="vidro"] .letreiro{display:none}
+[data-tema="vidro"] .corpo{grid-template-columns:230px minmax(0,1fr);gap:16px;padding:8px 20px 20px}
+[data-tema="vidro"] .caixa{background:var(--prata);border:1px solid var(--borda);border-radius:18px;padding-bottom:4px}
+[data-tema="vidro"] .caixa h2{color:var(--apagado);background:none;font-size:12px;font-weight:600;padding:12px 14px 0}
+[data-tema="vidro"] .caixa>*:not(h2){margin:8px 14px}
+[data-tema="vidro"] .lateral .botao,[data-tema="vidro"] .lateral select{width:calc(100% - 28px)}
+[data-tema="vidro"] .contador{color:var(--texto);background:none;border:0;padding:0;font:700 30px var(--titulo);letter-spacing:-.02em}
+[data-tema="vidro"] .secao h1{font-weight:700;font-size:28px;letter-spacing:-.025em;color:var(--texto);border:0;padding:0}
+[data-tema="vidro"] .secao h2{color:var(--texto);font-weight:600;font-size:16px}
+[data-tema="vidro"] .resumo{gap:12px}
+[data-tema="vidro"] .resumo div{background:var(--prata);border:1px solid var(--borda);border-radius:18px;padding:14px;text-align:left;color:var(--apagado)}
+[data-tema="vidro"] .resumo b{font-weight:700;font-size:30px;letter-spacing:-.02em;color:var(--texto)}
+[data-tema="vidro"] table{font-size:13px;background:var(--prata);border:1px solid var(--borda);border-radius:16px;border-collapse:separate;border-spacing:0;overflow:hidden}
+[data-tema="vidro"] th{color:var(--apagado);background:none;font-weight:600;padding:9px 10px;border-bottom:1px solid var(--prata-esc)}
+[data-tema="vidro"] td{padding:9px 10px;border-top:0;border-bottom:1px solid var(--prata-esc)}
+[data-tema="vidro"] tbody tr:last-child td{border-bottom:0}
+[data-tema="vidro"] tbody tr:nth-child(even){background:var(--linha-par)}
+[data-tema="vidro"] .tag{border:0;border-radius:999px;padding:1px 8px;background:var(--prata);font-weight:600}
+[data-tema="vidro"] .ficha{background:var(--prata);border:1px solid var(--borda);border-radius:18px;overflow:hidden}
+[data-tema="vidro"] .ficha header{background:none;padding:12px 14px 0}
+[data-tema="vidro"] .ficha h3{font-weight:600;font-size:16px}
+[data-tema="vidro"] .ficha dl{padding:10px 14px}
+[data-tema="vidro"] .ficha .acoes{padding:0 14px 14px}
+[data-tema="vidro"] .botao{border:0;border-radius:999px;padding:8px 16px;font-weight:600;background:#0060df}
+[data-tema="vidro"] .botao.cinza{color:var(--texto);background:var(--botao-claro);border:1px solid var(--prata-esc)}
+[data-tema="vidro"] input,[data-tema="vidro"] select,[data-tema="vidro"] textarea{font-size:13px;background:var(--botao-claro);border:1px solid var(--prata-esc);border-radius:10px;padding:7px 10px}
+[data-tema="vidro"] .vazio{background:none;border:1px dashed var(--prata-esc);border-radius:16px}
+[data-tema="vidro"] .rodape{background:none;border-top:1px solid var(--prata-esc)}
+[data-tema="vidro"] .selos{display:none}
+[data-tema="vidro"] .rodape p{margin:0}
+[data-tema="vidro"] dialog{color:var(--texto);background:var(--papel);border:1px solid var(--borda);border-radius:22px;box-shadow:var(--vidro-sombra);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px)}
+[data-tema="vidro"] dialog h2{color:var(--texto);background:none;font-size:18px;font-weight:700;padding:16px 16px 4px}
+[data-tema="vidro"] dialog::backdrop{background:rgb(0 0 0 / .25)}
+@media (max-width:640px){
+  [data-tema="vidro"] .pagina{margin:0;border:0;border-radius:0}
+  [data-tema="vidro"] .corpo{grid-template-columns:minmax(0,1fr);padding:8px 16px 16px}
+}

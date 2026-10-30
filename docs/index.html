@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caçada Retrô</title>
+<meta name="description" content="Lista de caça de consoles, controles e jogos, com alerta por email.">
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;700&family=Silkscreen&display=swap">
+<link rel="stylesheet" href="temas.css">
+<link rel="stylesheet" href="tema-vidro.css">
+<link rel="stylesheet" href="tema-nox.css">
+<link rel="stylesheet" href="tema-radar.css">
+<script>try{document.documentElement.dataset.tema=localStorage.getItem("cacada-tema")||"radar"}catch{document.documentElement.dataset.tema="radar"}</script>
+</head>
+<body>
+<div class="pagina">
+  <div class="barra-janela" aria-hidden="true">
+    <span class="bolinha vermelha"></span><span class="bolinha amarela"></span><span class="bolinha verde"></span>
+    <span class="barra-titulo">Caçada Retrô</span>
+  </div>
+  <header class="topo">
+    <div class="logo"><span class="logo-a">Caçada</span><span class="logo-b">Retrô</span></div>
+    <p class="slogan">Consoles, controles e o que mais faltar na estante</p>
+  </header>
+
+  <nav class="abas" aria-label="Seções">
+    <a href="#painel" data-aba="painel">Painel</a>
+    <a href="#lista" data-aba="lista">Minha lista</a>
+    <a href="#anuncios" data-aba="anuncios">Anúncios</a>
+    <a href="#alertas" data-aba="alertas">Alertas</a>
+  </nav>
+
+  <div class="letreiro" aria-hidden="true"><div class="letreiro-txt" id="letreiro"></div></div>
+
+  <div class="corpo">
+    <aside class="lateral">
+      <section class="caixa">
+        <h2>Sistema</h2>
+        <ul class="leds" id="leds"></ul>
+        <p class="miudo" id="ultima"></p>
+      </section>
+      <section class="caixa">
+        <h2>Na mira</h2>
+        <div class="contador" id="contador" aria-label="Itens na lista"></div>
+        <p class="miudo">itens procurados</p>
+      </section>
+      <section class="caixa">
+        <h2>Ações</h2>
+        <button class="botao" type="button" id="btnNovo">Adicionar item</button>
+      </section>
+      <section class="caixa">
+        <h2>Visual</h2>
+        <label class="miudo" for="seletorTema">Escolha o tema</label>
+        <select id="seletorTema"></select>
+      </section>
+    </aside>
+
+    <main class="conteudo">
+      <section id="painel" class="secao"></section>
+      <section id="lista" class="secao" hidden></section>
+      <section id="anuncios" class="secao" hidden></section>
+      <section id="alertas" class="secao" hidden></section>
+    </main>
+  </div>
+
+  <footer class="rodape">
+    <div class="selos" aria-hidden="true">
+      <span class="selo s1">100% HTML</span><span class="selo s2">1024x768</span><span class="selo s3">SEM POP-UP</span>
+    </div>
+    <p>Caçada Retrô. Preços e anúncios vêm das lojas: confira antes de comprar.</p>
+  </footer>
+</div>
+
+<dialog id="dlg">
+  <form id="form">
+    <h2 id="dlgTitulo">Novo item</h2>
+    <label>Nome do item<input id="fNome" required maxlength="120"></label>
+    <div class="duas">
+      <label>Categoria<select id="fCategoria"></select></label>
+      <label>Prioridade<select id="fPrioridade"><option value="3">Alta</option><option value="2" selected>Média</option><option value="1">Baixa</option></select></label>
+    </div>
+    <div class="duas">
+      <label>Estado desejado<select id="fEstado"><option>Qualquer</option><option value="Loose">Loose (só o item)</option><option value="CIB">CIB (completo na caixa)</option><option>Lacrado</option></select></label>
+      <label>Região<select id="fRegiao"><option>Qualquer</option><option>NTSC-U</option><option>NTSC-J</option><option>PAL</option><option>Brasil</option></select></label>
+    </div>
+    <label>Teto em R$ (0 = sem teto)<input id="fTeto" type="number" min="0" step="1" value="0"></label>
+    <label>Termos de busca, um por linha (até 3)<textarea id="fTermos" rows="3" placeholder="super nintendo console"></textarea></label>
+    <label>O título precisa ter, separado por vírgula. Use | para alternativas<input id="fExige" placeholder="super nintendo|snes, console"></label>
+    <label>O título não pode ter, separado por vírgula<input id="fExclui" placeholder="capa, cabo, replica"></label>
+    <label>Notas<textarea id="fNotas" rows="2" maxlength="400"></textarea></label>
+    <p class="miudo">O GitHub abre com o pedido pronto. Clique em <b>Create</b> lá. A lista atualiza em 1 a 2 minutos.</p>
+    <div class="fim">
+      <button class="botao cinza" type="button" id="btnCancelar">Cancelar</button>
+      <button class="botao" type="submit">Continuar no GitHub</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+ "itens": [
+  {
+   "id": "dualshock-4-500-million",
+   "nome": "DualShock 4 500 Million",
+   "categoria": "Controle",
+   "prioridade": 3,
+   "estado": "Qualquer",
+   "regiao": "Qualquer",
+   "teto": 0,
+   "ativo": true,
+   "notas": "Edição limitada azul translúcida, de 2016.",
+   "termos": [
+    "dualshock 4 500 million",
+    "ps4 controller 500 million limited",
+    "controle ps4 500 milhões"
+   ],
+   "exige": [
+    "500|500m",
+    "million|milhoes|milhao|500m",
+    "dualshock|controle|controller|ds4"
+   ],
+   "exclui": [
+    "skin",
+    "case",
+    "capa",
+    "adesivo",
+    "sticker",
+    "decal",
+    "replica",
+    "shell",
+    "carcaca",
+    "faceplate",
+    "pelicula",
+    "suporte",
+    "stand",
+    "cabo",
+    "cable",
+    "charger",
+    "carregador",
+    "poster",
+    "chaveiro",
+    "console"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+/* Nox: escuro grafite, trilho de ícones à esquerda, cartões de 22px, botão azul com brilho */
+:root[data-tema="nox"]{
+  color-scheme:dark;
+  --fundo:#1e2224; --papel:transparent; --texto:#f4f4f6; --apagado:#a3a5ac;
+  --borda:rgba(255,255,255,.085); --azul:#5b9cf6; --azul-claro:#2f7cf6; --prata:rgba(30,31,38,.72); --prata-esc:rgba(255,255,255,.07);
+  --laranja:#2f7cf6; --verde:#4ade80; --ambar:#f59e4b; --vermelho:#f87171;
+  --cor-a:#f43f6b; --cor-b:#34c46d; --cor-c:#22c3e6;
+  --fonte:Inter,"SF Pro Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --titulo:Inter,"SF Pro Display",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+[data-tema="nox"] body{background:#1e2224;background-image:none}
+[data-tema="nox"] .pagina{max-width:1160px;margin:0 auto;padding:14px;background:none;border:0;box-shadow:none;display:grid;gap:12px 16px;
+  grid-template-columns:62px minmax(0,1fr);grid-template-rows:auto 1fr auto;grid-template-areas:"trilho topo" "trilho corpo" "trilho rodape"}
+[data-tema="nox"] .barra-janela,[data-tema="nox"] .letreiro,[data-tema="nox"] .selos{display:none}
+
+[data-tema="nox"] .abas{grid-area:trilho;position:sticky;top:14px;align-self:start;height:calc(100vh - 28px);flex-direction:column;flex-wrap:nowrap;align-items:center;gap:8px;
+  padding:12px 0;background:rgba(22,25,28,.7);border:1px solid var(--borda);border-radius:31px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+[data-tema="nox"] .abas a{width:42px;height:42px;display:grid;place-items:center;padding:0;color:var(--apagado);background:none;border:0;border-radius:50%}
+[data-tema="nox"] .abas a:hover{color:var(--texto);background:rgba(255,255,255,.07)}
+[data-tema="nox"] .abas a[aria-current="page"]{color:#fff;background:rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+[data-tema="nox"] .abas .rotulo{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+[data-tema="nox"] .abas .icone{width:19px;height:19px}
+
+[data-tema="nox"] .topo{grid-area:topo;padding:6px 4px 0;background:none;color:var(--texto)}
+[data-tema="nox"] .logo{font-size:28px;font-weight:700;letter-spacing:-.025em;text-shadow:none}
+[data-tema="nox"] .logo-b{color:var(--azul);font-style:normal}
+[data-tema="nox"] .slogan{color:var(--apagado);font-size:13px;margin-top:4px}
+[data-tema="nox"] .corpo{grid-area:corpo;grid-template-columns:220px minmax(0,1fr);gap:14px;padding:0}
+[data-tema="nox"] .rodape{grid-area:rodape;background:none;border:0;padding:4px}
+[data-tema="nox"] .rodape p{margin:0}
+
+[data-tema="nox"] .caixa,[data-tema="nox"] .ficha,[data-tema="nox"] .resumo div,[data-tema="nox"] .aneis,[data-tema="nox"] table{
+  background:var(--prata);border:1px solid var(--borda);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.045)}
+[data-tema="nox"] .caixa{padding-bottom:6px;overflow:hidden}
+[data-tema="nox"] .caixa h2{color:var(--texto);background:none;font-size:13px;font-weight:600;padding:14px 16px 0}
+[data-tema="nox"] .caixa>*:not(h2){margin:8px 16px}
+[data-tema="nox"] .lateral .botao,[data-tema="nox"] .lateral select{width:calc(100% - 32px)}
+[data-tema="nox"] .contador{color:var(--texto);background:none;border:0;padding:0;font:700 26px var(--titulo);letter-spacing:-.02em}
+
+[data-tema="nox"] .secao h1{font-weight:700;font-size:22px;letter-spacing:-.02em;color:var(--texto);border:0;padding:0}
+[data-tema="nox"] .secao h2{color:var(--texto);font-weight:600;font-size:15px}
+[data-tema="nox"] .resumo div{text-align:left;padding:12px 14px;color:var(--apagado);font-size:12px;font-weight:500}
+[data-tema="nox"] .resumo b{color:var(--texto);font-size:22px;font-weight:700;letter-spacing:-.02em}
+[data-tema="nox"] .destaque{background:linear-gradient(150deg,#27548f,#1a2f52);border:1px solid rgba(91,156,246,.3);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+[data-tema="nox"] .aneis circle.trilha{opacity:.22}
+
+[data-tema="nox"] table{border-collapse:separate;border-spacing:0;overflow:hidden;font-size:12.5px}
+[data-tema="nox"] th{color:var(--apagado);background:none;font-weight:600;padding:10px 12px;border-bottom:1px solid var(--prata-esc)}
+[data-tema="nox"] td{padding:10px 12px;border-top:0;border-bottom:1px solid var(--prata-esc)}
+[data-tema="nox"] tbody tr:last-child td{border-bottom:0}
+[data-tema="nox"] tbody tr:nth-child(even){background:none}
+[data-tema="nox"] tbody tr:hover{background:rgba(255,255,255,.035)}
+[data-tema="nox"] .ficha{overflow:hidden}
+[data-tema="nox"] .ficha header{background:none;padding:14px 16px 0}
+[data-tema="nox"] .ficha h3{font-weight:600;font-size:15px}
+[data-tema="nox"] .ficha dl{padding:10px 16px}
+[data-tema="nox"] .ficha .acoes{padding:0 16px 14px}
+[data-tema="nox"] .tag{border:0;border-radius:8px;padding:2px 8px;font-weight:600;background:rgba(255,255,255,.07)}
+
+[data-tema="nox"] .botao{min-height:36px;padding:0 15px;font-size:12.5px;font-weight:600;color:#fff;border:1px solid transparent;border-radius:18px;background:#2f7cf6;
+  box-shadow:0 8px 22px -6px rgba(47,124,246,.9),inset 0 1px 0 rgba(255,255,255,.3);transition:transform .12s,filter .12s}
+[data-tema="nox"] .botao:hover{filter:brightness(1.12);transform:translateY(-1px)}
+[data-tema="nox"] .botao:active{transform:translateY(0)}
+[data-tema="nox"] .botao.cinza{color:var(--texto);background:rgba(255,255,255,.08);border-color:var(--borda);box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+[data-tema="nox"] .botao.perigo{color:var(--vermelho)}
+[data-tema="nox"] input,[data-tema="nox"] select,[data-tema="nox"] textarea{font-size:13px;color:var(--texto);background:rgba(255,255,255,.043);border:1px solid var(--borda);border-radius:12px;padding:8px 12px}
+[data-tema="nox"] select option{background:#1e2224}
+[data-tema="nox"] .vazio{background:none;border:1px dashed var(--borda);border-radius:18px}
+[data-tema="nox"] dialog{color:var(--texto);background:#23272b;border:1px solid var(--borda);border-radius:22px}
+[data-tema="nox"] dialog h2{color:var(--texto);background:none;font-size:17px;font-weight:700;padding:16px 16px 4px}
+[data-tema="nox"] dialog::backdrop{background:rgba(0,0,0,.5)}
+
+@media (max-width:760px){
+  [data-tema="nox"] .pagina{grid-template-columns:minmax(0,1fr);grid-template-areas:"topo" "corpo" "rodape";padding:12px 16px 84px}
+  [data-tema="nox"] .abas{position:fixed;top:auto;bottom:calc(10px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);height:auto;flex-direction:row;padding:6px 10px;z-index:5;backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px)}
+  [data-tema="nox"] .corpo{grid-template-columns:minmax(0,1fr)}
+  [data-tema="nox"] .lateral{order:2}
+}

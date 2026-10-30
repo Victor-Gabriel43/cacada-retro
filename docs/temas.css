@@ -1,0 +1,65 @@
+/* Temas. O padrão fica em estilo.css. Cada tema redefine as cores e o que muda de forma. */
+.barra-janela{display:none}
+
+/* Mac clássico: listras finas, janela arredondada, botões de gel e três bolinhas */
+:root[data-tema="mac"]{
+  --fundo:#dfe3e8; --azulejo:#d3d8df; --papel:#f7f7f8; --texto:#1d1d1f; --apagado:#55585e;
+  --borda:#b4b8bf; --azul:#0a5ac2; --azul-claro:#3a8bf0; --prata:#ececee; --prata-esc:#c9ccd2;
+  --laranja:#0a5ac2; --verde:#1b7f3a; --ambar:#9a5b00; --vermelho:#c5281c;
+  --fonte:"Lucida Grande","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --titulo:"Helvetica Neue","Lucida Grande",Helvetica,Arial,sans-serif;
+}
+[data-tema="mac"] body{background-image:repeating-linear-gradient(var(--fundo) 0 2px,var(--azulejo) 2px 4px);background-size:auto}
+[data-tema="mac"] .pagina{border:1px solid #8e9299;border-radius:10px;overflow:hidden;box-shadow:0 12px 34px rgb(0 0 0 / .32);margin-block:22px}
+
+[data-tema="mac"] .barra-janela{display:flex;align-items:center;gap:8px;position:relative;height:30px;padding:0 12px;
+  background:linear-gradient(#f2f2f3,#cfd1d6);border-bottom:1px solid #9a9da3}
+[data-tema="mac"] .bolinha{width:13px;height:13px;border-radius:50%;box-shadow:inset 0 1px 2px rgb(255 255 255 / .75),inset 0 -1px 2px rgb(0 0 0 / .22),0 0 0 .5px rgb(0 0 0 / .4)}
+[data-tema="mac"] .vermelha{background:#ff5f57}
+[data-tema="mac"] .amarela{background:#febc2e}
+[data-tema="mac"] .verde{background:#28c840}
+[data-tema="mac"] .barra-titulo{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;font-weight:bold;color:#3a3b3f;pointer-events:none}
+
+[data-tema="mac"] .topo{color:var(--texto);background:var(--papel);text-align:center;border-bottom:1px solid var(--prata-esc)}
+[data-tema="mac"] .logo{font-weight:300;letter-spacing:-.03em;text-shadow:0 1px 0 #fff}
+[data-tema="mac"] .logo-b{color:var(--azul);font-style:normal;font-weight:700}
+[data-tema="mac"] .slogan{color:var(--apagado)}
+
+[data-tema="mac"] .abas{justify-content:center;gap:0;padding:8px;background:var(--prata);border-bottom:1px solid var(--prata-esc)}
+[data-tema="mac"] .abas a{color:var(--texto);font-weight:normal;padding:4px 16px;border:1px solid #a5a8ae;border-left-width:0;border-radius:0;background:linear-gradient(#fff,#e2e3e6)}
+[data-tema="mac"] .abas a:first-child{border-left-width:1px;border-radius:6px 0 0 6px}
+[data-tema="mac"] .abas a:last-child{border-radius:0 6px 6px 0}
+[data-tema="mac"] .abas a[aria-current="page"]{color:#fff;background:linear-gradient(#5aa5f7,#0a5ac2);border-color:#0a4a9e}
+
+[data-tema="mac"] .letreiro{background:var(--papel);border-bottom:1px solid var(--prata-esc);color:var(--apagado)}
+[data-tema="mac"] .caixa{border-radius:8px;overflow:hidden;background:#fff}
+[data-tema="mac"] .caixa h2{color:#3a3b3f;background:linear-gradient(#f4f4f5,#dcdde1);border-bottom:1px solid var(--prata-esc)}
+[data-tema="mac"] .contador{color:#1d1d1f;background:#e9f0dc;border:1px solid #9aa58a;border-radius:4px;font-weight:normal}
+
+[data-tema="mac"] .secao h1{font-weight:300;font-size:24px;color:var(--texto);border-bottom:1px solid var(--prata-esc)}
+[data-tema="mac"] .secao h2{color:var(--texto)}
+[data-tema="mac"] .resumo div{background:#fff;border:1px solid var(--prata-esc);border-radius:8px}
+[data-tema="mac"] .resumo b{font-weight:300;color:var(--azul)}
+
+[data-tema="mac"] table{border-color:var(--prata-esc);border-radius:6px;border-collapse:separate;border-spacing:0;overflow:hidden;background:#fff}
+[data-tema="mac"] th{color:#3a3b3f;background:linear-gradient(#f7f7f8,#dfe0e4);border-bottom:1px solid var(--prata-esc)}
+[data-tema="mac"] tbody tr:nth-child(even){background:#eef4fd}
+[data-tema="mac"] .tag{border-radius:9px;padding:1px 8px}
+
+[data-tema="mac"] .ficha{border-color:var(--prata-esc);border-radius:8px;overflow:hidden;background:#fff}
+[data-tema="mac"] .ficha header{background:linear-gradient(#f7f7f8,#e6e7ea)}
+
+[data-tema="mac"] .botao{border-radius:12px;padding:5px 14px;font-weight:normal;border-color:#0a4a9e;text-shadow:0 -1px 0 rgb(0 0 0 / .3);
+  background:linear-gradient(#3f8fee 0,#1f6fd6 50%,#0a5ac2 51%,#2a78dc 100%)}
+[data-tema="mac"] .botao.cinza{color:var(--texto);text-shadow:none;border-color:#a0a3a9;background:linear-gradient(#fff 0,#eeeef0 50%,#dcdde1 51%,#f2f2f4 100%)}
+[data-tema="mac"] input,[data-tema="mac"] select,[data-tema="mac"] textarea{border:1px solid #a5a8ae;border-radius:4px}
+
+[data-tema="mac"] .rodape{background:var(--prata);border-top:1px solid var(--prata-esc)}
+[data-tema="mac"] .selos{display:none}
+[data-tema="mac"] dialog{border:1px solid #8e9299;border-radius:10px;box-shadow:0 12px 34px rgb(0 0 0 / .4)}
+[data-tema="mac"] dialog h2{color:#3a3b3f;text-align:center;background:linear-gradient(#f2f2f3,#cfd1d6);border-bottom:1px solid #9a9da3}
+[data-tema="mac"] dialog::backdrop{background:rgb(0 0 0 / .35)}
+
+@media (max-width:640px){
+  [data-tema="mac"] .pagina{margin:0;border:0;border-radius:0;box-shadow:none}
+}
