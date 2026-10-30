@@ -8,7 +8,7 @@ const SEM_MOVIMENTO = matchMedia("(prefers-reduced-motion:reduce)").matches;
 
 function casca(cor) {
   return CELULAR
-    ? new THREE.MeshPhysicalMaterial({ color: cor, roughness: 0.15, transparent: true, opacity: 0.45, clearcoat: 1 })
+    ? new THREE.MeshPhysicalMaterial({ color: 0x2f7fe0, roughness: 0.15, transparent: true, opacity: 0.68, clearcoat: 1, side: THREE.DoubleSide })
     : new THREE.MeshPhysicalMaterial({ color: cor, roughness: 0.14, transmission: 1, thickness: 1.1, ior: 1.46, attenuationColor: new THREE.Color(cor), attenuationDistance: 3.2, clearcoat: 1, clearcoatRoughness: 0.08 });
 }
 const fosco = (cor, r = 0.45, m = 0.1) => new THREE.MeshStandardMaterial({ color: cor, roughness: r, metalness: m });
@@ -127,7 +127,7 @@ export function montar(caixa, canvas, ao) {
 
   const camera = new THREE.PerspectiveCamera(32, 2, 0.1, 100);
   camera.position.set(0, 1.0, 11.5);
-  camera.lookAt(0, -0.25, 0);
+  camera.lookAt(0, -0.75, 0);
 
   const foco = new THREE.SpotLight(0xcfe4ff, 34, 30, 0.5, 0.8);
   foco.position.set(0, 8, 3);
@@ -138,13 +138,14 @@ export function montar(caixa, canvas, ao) {
   cena.add(foco, contra, quente);
 
   const pedestal = new THREE.Mesh(new THREE.CylinderGeometry(2.9, 3.05, 0.22, 96), new THREE.MeshStandardMaterial({ color: 0x151d2d, roughness: 0.6, metalness: 0.2, envMapIntensity: 0.3 }));
-  pedestal.position.y = -1.72;
+  pedestal.position.y = -2.15;
   const anelLuz = new THREE.Mesh(new THREE.TorusGeometry(2.92, 0.012, 8, 160), new THREE.MeshStandardMaterial({ color: 0x9fd0ff, emissive: 0x6db4ff, emissiveIntensity: 2.4 }));
   anelLuz.rotation.x = Math.PI / 2;
-  anelLuz.position.y = -1.6;
+  anelLuz.position.y = -2.03;
   cena.add(pedestal, anelLuz);
 
   const giro = new THREE.Group();
+  giro.position.y = 0.25;
   cena.add(giro);
 
   let ancoras = [];
@@ -167,7 +168,7 @@ export function montar(caixa, canvas, ao) {
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     // Em tela estreita a câmera recua para o objeto caber
-    camera.position.z = camera.aspect < 1.1 ? 15 : 11.5;
+    camera.position.z = camera.aspect < 1.5 ? 15 : 11.5;
     camera.updateProjectionMatrix();
   }
   const obs = new ResizeObserver(medir);
@@ -201,7 +202,7 @@ export function montar(caixa, canvas, ao) {
     }
     giro.rotation.y += (alvoY - giro.rotation.y) * 0.14;
     giro.rotation.x += (alvoX - giro.rotation.x) * 0.14;
-    if (!SEM_MOVIMENTO) giro.position.y = Math.sin(performance.now() / 1400) * 0.05;
+    if (!SEM_MOVIMENTO) giro.position.y = 0.25 + Math.sin(performance.now() / 1400) * 0.05;
     renderer.render(cena, camera);
 
     const w = caixa.clientWidth, h = caixa.clientHeight;
