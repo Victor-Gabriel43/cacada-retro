@@ -7,8 +7,8 @@ const ABAS = ["painel", "lista", "anuncios", "alertas"];
 const LEDS = { ok: "funcionando", falha: "com problema", sem_chave: "sem chave" };
 
 // Para criar um tema: adicione aqui e escreva as regras em temas.css
-const TEMA_PADRAO = "radar";
-const TEMAS = { radar: "Radar gamer", nox: "Nox", vidro: "Vidro 2026", mac: "Mac clássico", anos2000: "Portal anos 2000" };
+const TEMA_PADRAO = "vitrine";
+const TEMAS = { vitrine: "Vitrine 3D", radar: "Radar gamer", nox: "Nox", vidro: "Vidro 2026", mac: "Mac clássico", anos2000: "Portal anos 2000" };
 
 const $ = (id) => document.getElementById(id);
 const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -64,6 +64,66 @@ function radar(ativos) {
     <p>Cada ponto é um anúncio ativo. Clique para abrir.</p><p>Mais perto do centro é mais barato na mesma moeda. Verde está dentro do seu teto.</p></div></div>`;
 }
 
+// Vitrine 3D: só carrega a biblioteca quando este tema está ativo
+let vitrine = null, itemVitrine = null;
+
+function etiquetasDe(item) {
+  return anuncios.filter((a) => a.item_id === item.id && a.ativo && url(a.link)).sort((a, b) => a.preco - b.preco).slice(0, 6);
+}
+
+function desenharVitrine() {
+  const caixa = $("vitrine");
+  if (!caixa || !itens.length) return;
+  itemVitrine = itens.find((i) => i.id === itemVitrine?.id) || [...itens].sort((a, b) => (b.prioridade || 2) - (a.prioridade || 2))[0];
+  const lista = etiquetasDe(itemVitrine);
+  caixa.querySelectorAll(".etiqueta").forEach((e) => e.remove());
+  const els = lista.map((a) => {
+    const el = document.createElement("a");
+    el.className = "etiqueta";
+    el.href = a.link;
+    el.target = "_blank";
+    el.rel = "noopener";
+    el.title = a.titulo;
+    el.innerHTML = `<b>${preco(a.preco, a.moeda)}</b><span>${esc(a.loja)}</span>`;
+    caixa.appendChild(el);
+    return el;
+  });
+  caixa.querySelector(".placa h2").textContent = itemVitrine.nome;
+  caixa.querySelector(".placa p").textContent = lista.length
+    ? `${lista.length} ${lista.length === 1 ? "anúncio ativo" : "anúncios ativos"}. Clique na etiqueta para abrir. Arraste para girar.`
+    : "Nenhum anúncio ativo agora. Quando a busca achar, a etiqueta de preço aparece aqui. Arraste para girar.";
+  const escolha = caixa.querySelector(".escolha");
+  escolha.innerHTML = "";
+  if (itens.length > 1) itens.forEach((i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = i.nome;
+    b.setAttribute("aria-pressed", i.id === itemVitrine.id);
+    b.onclick = () => { itemVitrine = i; desenharVitrine(); };
+    escolha.appendChild(b);
+  });
+  vitrine?.trocar(itemVitrine.categoria, els);
+}
+
+async function ligarVitrine() {
+  const ativo = document.documentElement.dataset.tema === "vitrine";
+  if (!ativo) { vitrine?.pausar(true); return; }
+  if (vitrine) { vitrine.pausar(false); desenharVitrine(); return; }
+  const caixa = $("vitrine");
+  if (!caixa) return;
+  try {
+    const { montar } = await import("./vitrine.js");
+    vitrine = montar(caixa, caixa.querySelector("canvas"), { semSuporte: () => { throw new Error("webgl"); } });
+    desenharVitrine();
+  } catch {
+    caixa.querySelector("canvas").remove();
+    const aviso = document.createElement("div");
+    aviso.className = "sem-suporte";
+    aviso.textContent = "Não deu para abrir a vitrine 3D neste aparelho. Escolha outro tema na caixa Visual.";
+    caixa.appendChild(aviso);
+  }
+}
+
 let itens = [], anuncios = [], status = { lojas: {} };
 let filtroItem = "todos", filtroSit = "ativos";
 
@@ -111,7 +171,7 @@ function desenharPainel() {
        <a class="botao" href="${url(barato.link)}" target="_blank" rel="noopener">${ic("abrir")}Ver anúncio</a></div>`
     : `<div class="destaque"><span class="miudo">Mais barato agora</span><strong>Nenhum anúncio ativo ainda</strong>
        <span class="miudo">Quando a varredura achar algo, o melhor preço aparece aqui.</span></div>`;
-  $("painel").innerHTML = `<h1>Painel</h1>${radar(ativos)}
+  $("painel").innerHTML = `<h1>Painel</h1><div class="vitrine" id="vitrine"><canvas aria-label="Modelo 3D do item. Arraste para girar."></canvas><div class="placa"><h2></h2><p></p></div><div class="escolha"></div></div>${radar(ativos)}
     <div class="resumo"><div><b>${itens.filter((i) => i.ativo !== false).length}</b>alertas ligados</div>
     <div><b>${ativos.length}</b>anúncios ativos</div><div><b>${anuncios.length}</b>anúncios já vistos</div></div>
     <div class="painel-duplo">
@@ -205,6 +265,7 @@ function iniciarTemas() {
   seletor.value = raiz.dataset.tema;
   seletor.onchange = () => {
     raiz.dataset.tema = seletor.value;
+    ligarVitrine();
     try { localStorage.setItem("cacada-tema", seletor.value); } catch {}
   };
 }
@@ -278,5 +339,5 @@ async function ler(nome) {
     $("painel").innerHTML = '<h1>Painel</h1><div class="vazio">Não deu para carregar os dados. Recarregue a página.</div>';
     return;
   }
-  desenharLateral(); desenharPainel(); desenharLista(); desenharAnuncios(); desenharAlertas();
+  desenharLateral(); desenharPainel(); desenharLista(); desenharAnuncios(); desenharAlertas(); ligarVitrine();
 })();

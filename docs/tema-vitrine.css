@@ -1,0 +1,97 @@
+/* Vitrine 3D: sala escura de exposição. O objeto é o centro; o resto da interface fica calmo */
+:root[data-tema="vitrine"]{
+  color-scheme:dark;
+  --fundo:#0c111c; --papel:transparent; --texto:#eef2f8; --apagado:#a2adc0;
+  --borda:rgba(190,215,255,.14); --azul:#9fd0ff; --azul-claro:#9fd0ff; --prata:rgba(255,255,255,.035); --prata-esc:rgba(190,215,255,.12);
+  --laranja:#9fd0ff; --verde:#7fe3bd; --ambar:#ffc98a; --vermelho:#ff9aa6;
+  --cor-a:#9fd0ff; --cor-b:#7fe3bd; --cor-c:#ffc98a;
+  --fonte:"Manrope","Segoe UI",system-ui,sans-serif;
+  --titulo:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+}
+[data-tema="vitrine"] body{font-size:14px;background:#0c111c;background-image:none}
+[data-tema="vitrine"] .pagina{position:relative;max-width:none;margin:0;background:none;border:0;box-shadow:none}
+[data-tema="vitrine"] .barra-janela,[data-tema="vitrine"] .selos,[data-tema="vitrine"] .letreiro{display:none}
+
+[data-tema="vitrine"] .topo{position:absolute;z-index:6;top:0;left:0;padding:20px max(24px,env(safe-area-inset-left,0px));background:none;color:var(--texto)}
+[data-tema="vitrine"] .logo{font:700 20px/1 var(--titulo);letter-spacing:-.02em;text-shadow:none}
+[data-tema="vitrine"] .logo-b{color:var(--azul);font-style:normal;margin-left:.25em}
+[data-tema="vitrine"] .slogan{display:none}
+
+[data-tema="vitrine"] .abas{position:absolute;z-index:6;top:14px;right:max(20px,env(safe-area-inset-right,0px));gap:2px;padding:4px;background:rgba(20,28,44,.7);border:1px solid var(--borda);border-radius:999px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+[data-tema="vitrine"] .abas a{padding:7px 14px;font-weight:600;font-size:13px;color:var(--apagado);background:none;border:0;border-radius:999px}
+[data-tema="vitrine"] .abas a:hover{color:var(--texto)}
+[data-tema="vitrine"] .abas a[aria-current="page"]{color:#0c111c;background:var(--azul)}
+
+[data-tema="vitrine"] .corpo{display:flex;flex-direction:column;gap:20px;padding:0 0 24px}
+[data-tema="vitrine"] .conteudo{order:1}
+[data-tema="vitrine"] .lateral{order:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;width:min(1120px,100%);margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left,0px))}
+[data-tema="vitrine"] .secao:not(#painel){width:min(1120px,100%);margin:0 auto;padding:84px max(20px,env(safe-area-inset-left,0px)) 0}
+[data-tema="vitrine"] #painel>h1{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+[data-tema="vitrine"] #painel>:not(.vitrine):not(h1){width:min(1120px,calc(100% - 40px));margin-inline:auto}
+
+/* A sala */
+[data-tema="vitrine"] .vitrine{display:block;position:relative;height:min(78vh,720px);min-height:460px;overflow:hidden;margin-bottom:20px;
+  background:linear-gradient(#0c111c 0,#121b2d 55%,#0c111c 100%);touch-action:pan-y}
+[data-tema="vitrine"] .vitrine canvas{position:absolute;inset:0;width:100%;height:100%;cursor:grab}
+[data-tema="vitrine"] .vitrine canvas:active{cursor:grabbing}
+.vitrine{display:none}
+[data-tema="vitrine"] .placa{position:absolute;z-index:4;left:max(24px,env(safe-area-inset-left,0px));bottom:26px;max-width:min(520px,calc(100% - 48px));pointer-events:none}
+[data-tema="vitrine"] .vitrine .placa h2{margin:0;font:700 clamp(30px,5.4vw,62px)/1 var(--titulo);letter-spacing:-.035em;color:var(--texto);text-wrap:balance}
+[data-tema="vitrine"] .placa p{margin:8px 0 0;color:var(--apagado)}
+[data-tema="vitrine"] .escolha{position:absolute;z-index:5;right:max(20px,env(safe-area-inset-right,0px));bottom:26px;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;max-width:44%}
+[data-tema="vitrine"] .escolha button{font:600 12px var(--fonte);color:var(--texto);padding:6px 12px;cursor:pointer;background:rgba(20,28,44,.7);border:1px solid var(--borda);border-radius:999px}
+[data-tema="vitrine"] .escolha button[aria-pressed="true"]{color:#0c111c;background:var(--azul)}
+[data-tema="vitrine"] .etiqueta{position:absolute;top:0;left:0;display:grid;gap:1px;padding:7px 11px;font-size:11px;line-height:1.3;color:#0c111c;text-decoration:none;white-space:nowrap;background:#f3f6fb;border-radius:4px 12px 12px 4px;transition:opacity .25s;will-change:transform}
+[data-tema="vitrine"] .etiqueta b{font:700 14px var(--titulo)}
+[data-tema="vitrine"] .etiqueta:hover,[data-tema="vitrine"] .etiqueta:focus-visible{background:var(--azul)}
+[data-tema="vitrine"] .sem-suporte{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--apagado)}
+
+[data-tema="vitrine"] .caixa,[data-tema="vitrine"] .resumo div,[data-tema="vitrine"] .aneis,[data-tema="vitrine"] .ficha,[data-tema="vitrine"] table{background:var(--prata);border:1px solid var(--borda);border-radius:14px}
+[data-tema="vitrine"] .caixa{padding-bottom:8px;overflow:hidden}
+[data-tema="vitrine"] .caixa h2{padding:14px 16px 0;font:600 13px var(--titulo);color:var(--apagado);background:none}
+[data-tema="vitrine"] .caixa>*:not(h2){margin:8px 16px}
+[data-tema="vitrine"] .lateral .botao,[data-tema="vitrine"] .lateral select{width:calc(100% - 32px)}
+[data-tema="vitrine"] .contador{padding:0;font:700 34px var(--titulo);letter-spacing:-.02em;color:var(--texto);background:none;border:0}
+
+[data-tema="vitrine"] .secao h1{font:700 clamp(30px,5vw,48px)/1.05 var(--titulo);letter-spacing:-.03em;color:var(--texto);border:0;padding:0;margin-bottom:18px}
+[data-tema="vitrine"] .secao h2{font:600 17px var(--titulo);color:var(--texto)}
+[data-tema="vitrine"] .resumo div{padding:14px 16px;text-align:left;color:var(--apagado)}
+[data-tema="vitrine"] .resumo b{font:700 32px var(--titulo);letter-spacing:-.02em;color:var(--texto)}
+[data-tema="vitrine"] .destaque{color:#0c111c;background:var(--azul);border:0;border-radius:14px}
+[data-tema="vitrine"] .destaque .miudo{color:#22344d}
+[data-tema="vitrine"] .destaque .botao{color:var(--azul);background:#0c111c}
+
+[data-tema="vitrine"] table{border-collapse:separate;border-spacing:0;overflow:hidden;font-size:13px}
+[data-tema="vitrine"] th{padding:10px 12px;font-weight:600;color:var(--apagado);background:none;border-bottom:1px solid var(--borda)}
+[data-tema="vitrine"] td{padding:10px 12px;border-top:0;border-bottom:1px solid var(--prata-esc)}
+[data-tema="vitrine"] tbody tr:last-child td{border-bottom:0}
+[data-tema="vitrine"] tbody tr:nth-child(even){background:none}
+[data-tema="vitrine"] tbody tr:hover{background:rgba(159,208,255,.05)}
+[data-tema="vitrine"] .tag{border-radius:6px;padding:1px 7px}
+[data-tema="vitrine"] .ficha{overflow:hidden}
+[data-tema="vitrine"] .ficha header{padding:16px 18px 0;background:none}
+[data-tema="vitrine"] .ficha h3{font:700 20px var(--titulo);letter-spacing:-.02em}
+[data-tema="vitrine"] .ficha dl{padding:10px 18px}
+[data-tema="vitrine"] .ficha .acoes{padding:0 18px 16px}
+
+[data-tema="vitrine"] .botao{min-height:38px;padding:0 16px;font:700 13px var(--fonte);color:#0c111c;background:var(--azul);border:0;border-radius:999px;text-shadow:none;transition:transform .12s}
+[data-tema="vitrine"] .botao:hover{transform:translateY(-1px);filter:brightness(1.08)}
+[data-tema="vitrine"] .botao.cinza{color:var(--texto);background:rgba(255,255,255,.07);border:1px solid var(--borda)}
+[data-tema="vitrine"] .botao.perigo{color:var(--vermelho)}
+[data-tema="vitrine"] input,[data-tema="vitrine"] select,[data-tema="vitrine"] textarea{font-size:13px;color:var(--texto);background:rgba(255,255,255,.05);border:1px solid var(--borda);border-radius:10px;padding:8px 11px}
+[data-tema="vitrine"] select option{background:#121b2d}
+[data-tema="vitrine"] .vazio{background:none;border:1px dashed var(--borda);border-radius:14px}
+[data-tema="vitrine"] .rodape{background:none;border:0}
+[data-tema="vitrine"] .rodape p{margin:0}
+[data-tema="vitrine"] dialog{color:var(--texto);background:#141c2c;border:1px solid var(--borda);border-radius:18px}
+[data-tema="vitrine"] dialog h2{padding:16px 16px 4px;font:700 20px var(--titulo);color:var(--texto);background:none}
+[data-tema="vitrine"] dialog::backdrop{background:rgba(4,7,14,.65)}
+
+@media (max-width:640px){
+  [data-tema="vitrine"] .topo{position:static;padding:16px 16px 0}
+  [data-tema="vitrine"] .abas{position:static;margin:10px 16px;width:fit-content;max-width:calc(100% - 32px);flex-wrap:wrap}
+  [data-tema="vitrine"] .secao:not(#painel){padding:10px 16px 0}
+  [data-tema="vitrine"] .vitrine{height:72vh}
+  [data-tema="vitrine"] .escolha{position:absolute;top:14px;left:16px;right:16px;bottom:auto;max-width:none;justify-content:flex-start}
+  [data-tema="vitrine"] .etiqueta{font-size:10px;padding:5px 8px}
+}
