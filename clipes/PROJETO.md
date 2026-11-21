@@ -204,7 +204,45 @@ Objetivo: **postar os primeiros clipes** e provar que o caminho funciona.
 
 ---
 
-## 14. Decisões em aberto (responder antes de construir)
+## 14. Site de notícias do GTA 6
+
+Um site **só sobre GTA 6**: notícias, easter eggs e o que acontece na comunidade.
+Público principal: **americano (inglês)**, com versão em **português (PT-BR)**.
+O visual já está pronto (hoje só em PT-BR); falta subir para o repositório em `site/`.
+
+### O que entra no site
+| Seção | O que é | De onde vem |
+|---|---|---|
+| News | Notícias oficiais e da comunidade | Newswire da Rockstar, Reddit r/GTA6, YouTube (RSS) |
+| Easter eggs | Segredos e curiosidades do jogo | Fila de curiosidades do Clipador + o que eu escrever |
+| Moments | Melhores momentos de streamers | Clipes aprovados no Clipador |
+
+### Regras do site
+1. **Sem IA no dia a dia.** Um programa comum busca as fontes e monta o site. Pode rodar no GitHub de graça.
+2. **Inglês é o principal, PT-BR é a segunda língua.** Endereços `/` (inglês) e `/pt/` (português), com a marcação `hreflang` para o Google mostrar a língua certa para cada país.
+3. **Tradução sem token:** tradutor que roda no PC (ex.: Argos Translate) gera o rascunho; eu reviso o que for texto meu. Notícias de fontes gringas já vêm em inglês.
+4. **Não copiar matéria inteira:** título, resumo curto com palavras minhas, e link para a fonte.
+5. **Nada vai ao ar sem eu aprovar**, como no Clipador. Notícias aparecem numa fila no mesmo site local.
+6. **Não usar "GTA" no nome nem no domínio** (marca registrada da Rockstar/Take-Two).
+
+### Como o site e o Clipador se ajudam
+- Clipe aprovado → vira post em "Moments" no site.
+- Post nas redes → link do site na bio e na descrição → tráfego para o site.
+- Site com tráfego → anúncios (ex.: Google AdSense) como mais uma fonte de dinheiro.
+
+### Nome **[DECIDIR]**
+Ideias que funcionam em inglês e português: **Vice Daily**, **Leonida Report**, **Vice Radar**, **Leonida Times**, **Vice Wire**. Escolher e conferir se o domínio `.com` está livre.
+
+### Fases do site
+- **S0:** subir o visual atual para `site/` e publicar na Vercel com o nome escolhido.
+- **S1:** versão em inglês + `/pt/` + troca de língua no topo.
+- **S2:** busca automática das notícias (Rockstar, Reddit, YouTube) com fila de aprovação.
+- **S3:** clipes aprovados do Clipador aparecem em "Moments" sozinhos.
+- **S4:** SEO, AdSense e divulgação.
+
+---
+
+## 15. Decisões em aberto (responder antes de construir)
 
 1. Lista de streamers BR e de criadores gringos.
 2. Onde postar e se é uma conta só ou uma por streamer.
@@ -213,3 +251,5 @@ Objetivo: **postar os primeiros clipes** e provar que o caminho funciona.
 5. PC: Windows? Placa NVIDIA?
 6. De quanto em quanto tempo coletar durante a live.
 7. O que fazer com o código antigo da Caçada Retrô (apagar ou arquivar).
+8. Nome do site e domínio.
+9. Quem escreve os easter eggs: eu à mão, ou só os que vierem dos vídeos gringos.
